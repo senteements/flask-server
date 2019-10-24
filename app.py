@@ -27,6 +27,7 @@ def analyze():
     count = request.args.get('count')
     tweetsjson = workingscript.getAnalysis(query=query, count=count, ck = CK,cs = CS,at = AT,ats = ATS)
     print("...tweets fetched!")
+    print(tweetsjson)
     if (tweetsjson == None or (not tweetsjson)):
         errors = []
         errors.append({'text': "something went wrong!"})
