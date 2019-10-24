@@ -38,8 +38,3 @@ def analyze():
 if (__name__ == "__main__"):
     app.run()
 
-#  Werkzeug, MarkupSafe, Jinja2, itsdangerous, click, Flask
-# chardet, idna, urllib3, certifi, requests, oauthlib, requests-oauthlib, six, PySocks, tweepy
-# nltk, textblob
-# python-dotenv
-# gunicorn
