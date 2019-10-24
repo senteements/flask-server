@@ -4,7 +4,7 @@ import sys
 from flask import Flask
 from flask import request
 from flask import jsonify
-import pyth2
+import workingscript
 
 dotenv.load_dotenv()
 
@@ -25,10 +25,9 @@ def home():
 def analyze():
     query = request.args.get('query')
     count = request.args.get('count')
-    tweepy = pyth2.TwitterClient(CK, CS, AT, ATS)
-    tweetsjson = tweepy.get_tweets(query=query, count=count)
-    print(tweetsjson)
-    if (tweetsjson == None):
+    tweetsjson = workingscript.getAnalysis(query=query, count=count, ck = CK,cs = CS,at = AT,ats = ATS)
+    print("...tweets fetched!")
+    if (tweetsjson == None or (not tweetsjson)):
         errors = []
         errors.append({'text': "something went wrong!"})
         return jsonify(errors)
