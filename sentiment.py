@@ -142,15 +142,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 
-# train_bow = bow[:31962,:]
-# test_bow = bow[31962:,:]
-
 # splitting data into training and test set
 xtrain_bow, xtest_bow, ytrain, ytest = train_test_split(bow, dataset['sentiment'], random_state=42, test_size=0.3)
 
 lreg = LogisticRegression()
 lreg.fit(xtrain_bow, ytrain) # training the model
-
+model = lreg
 prediction = lreg.predict(xtest_bow)
 cm = confusion_matrix(ytest,prediction)
 print(cm)
@@ -167,9 +164,12 @@ from sklearn.externals import joblib
 filename = 'finalized_model.sav'
 joblib.dump(model, filename)
 
-# some time later...
-
 # load the model from disk
-loaded_model = joblib.load(filename)
-result = loaded_model.score(X_test, Y_test)
-print(result)
+# loaded_model = joblib.load(filename)
+# result = loaded_model.score(X_test, Y_test)
+# print(result)
+
+def predictAnalysis(realTweets):
+    loaded_model = joblib.load(filename)
+    result = loaded_model.predict(realTweets)
+    return result

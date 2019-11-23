@@ -1,10 +1,11 @@
+
 import dotenv
 import os
 import sys
 from flask import Flask
 from flask import request
 from flask import jsonify
-import workingscript
+import manif
 
 dotenv.load_dotenv()
 
@@ -25,7 +26,7 @@ def home():
 def analyze():
     query = request.args.get('query')
     count = request.args.get('count')
-    tweetsjson = workingscript.getAnalysis(query=query, count=count, ck = CK,cs = CS,at = AT,ats = ATS)
+    tweetsjson = manif.getAnalysis(query=query, count=count, ck = CK,cs = CS,at = AT,ats = ATS)
     print("...tweets fetched!")
     print(tweetsjson)
     if (tweetsjson == None or (not tweetsjson)):
@@ -37,4 +38,3 @@ def analyze():
 
 if (__name__ == "__main__"):
     app.run()
-
